@@ -55,7 +55,7 @@ fn gen_method_metadata(
     mod_path: &[String],
 ) -> syn::Result<Method> {
     let sig = match it {
-        syn::ImplItem::Method(m) => Signature::new(m.sig)?,
+        syn::ImplItem::Fn(m) => Signature::new(m.sig)?,
         _ => {
             return Err(syn::Error::new_spanned(
                 it,

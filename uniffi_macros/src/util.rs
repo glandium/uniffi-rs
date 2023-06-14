@@ -196,7 +196,7 @@ pub trait AttributeSliceExt {
 impl AttributeSliceExt for [Attribute] {
     fn parse_uniffi_attributes<T: UniffiAttribute>(&self) -> syn::Result<T> {
         self.iter()
-            .filter(|attr| attr.path.is_ident("uniffi"))
+            .filter(|attr| attr.path().is_ident("uniffi"))
             .try_fold(T::default(), |res, attr| {
                 let list: Punctuated<T, Token![,]> =
                     attr.parse_args_with(Punctuated::parse_terminated)?;
